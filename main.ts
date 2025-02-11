@@ -1,0 +1,68 @@
+input.onButtonPressed(Button.A, function () {
+    OLED.clear()
+    OLED.writeStringNewLine("la")
+    strip.show()
+    strip.showColor(neopixel.colors(NeoPixelColors.Indigo))
+    music.play(music.tonePlayable(440, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+    pins.analogWritePin(AnalogPin.P2, 800)
+})
+input.onButtonPressed(Button.AB, function () {
+    OLED.clear()
+    OLED.writeStringNewLine("do")
+    strip.show()
+    strip.showColor(neopixel.colors(NeoPixelColors.Red))
+    music.play(music.tonePlayable(523, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+    pins.analogWritePin(AnalogPin.P2, 0)
+})
+input.onButtonPressed(Button.B, function () {
+    OLED.clear()
+    OLED.writeStringNewLine("ti")
+    strip.show()
+    strip.showColor(neopixel.colors(NeoPixelColors.Purple))
+    music.play(music.tonePlayable(494, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+    pins.analogWritePin(AnalogPin.P2, 1024)
+})
+let strip: neopixel.Strip = null
+OLED.init(128, 64)
+strip = neopixel.create(DigitalPin.P16, 8, NeoPixelMode.RGB)
+basic.forever(function () {
+    if (pins.analogReadPin(AnalogReadWritePin.P1) < 10) {
+        OLED.clear()
+        OLED.writeStringNewLine("do")
+        strip.show()
+        strip.showColor(neopixel.colors(NeoPixelColors.Red))
+        music.play(music.tonePlayable(262, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        pins.analogWritePin(AnalogPin.P2, 100)
+    } else if (pins.analogReadPin(AnalogReadWritePin.P1) < 80) {
+        OLED.clear()
+        OLED.writeStringNewLine("re")
+        strip.show()
+        strip.showColor(neopixel.colors(NeoPixelColors.Orange))
+        music.play(music.tonePlayable(294, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        pins.analogWritePin(AnalogPin.P2, 200)
+    } else if (pins.analogReadPin(AnalogReadWritePin.P1) < 130) {
+        OLED.clear()
+        OLED.writeStringNewLine("mi")
+        strip.show()
+        strip.showColor(neopixel.colors(NeoPixelColors.Yellow))
+        music.play(music.tonePlayable(330, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        pins.analogWritePin(AnalogPin.P2, 400)
+    } else if (pins.analogReadPin(AnalogReadWritePin.P1) < 160) {
+        OLED.clear()
+        OLED.writeStringNewLine("fa")
+        strip.show()
+        strip.showColor(neopixel.colors(NeoPixelColors.Green))
+        music.play(music.tonePlayable(349, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        pins.analogWritePin(AnalogPin.P2, 600)
+    } else if (pins.analogReadPin(AnalogReadWritePin.P1) < 600) {
+        OLED.clear()
+        OLED.writeStringNewLine("sol")
+        strip.show()
+        strip.showColor(neopixel.colors(NeoPixelColors.Blue))
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Half)), music.PlaybackMode.UntilDone)
+        pins.analogWritePin(AnalogPin.P2, 700)
+    }
+})
+basic.forever(function () {
+    strip.show()
+})
